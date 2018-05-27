@@ -121,3 +121,16 @@ string CursesClass::getString(int posY, int posX, int maxSize)
 
 	return retValue;
 }
+
+CursesClass& CursesClass::operator<<(std::string str)
+{
+	printw(str.c_str());
+	return *this;
+	
+}
+
+void CursesClass::clearDisplay()
+{
+	clear();
+	move(0, 0);
+}

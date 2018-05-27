@@ -44,9 +44,11 @@ string getXML(basicLCD & lcd, CursesClass & curses, string web)
 	client.send_message(instrBlank.c_str(), instrBlank.size());
 
 	bool getSize = true;
+	bool leave = false;
 	size_t len = 0;
 	size_t totalSize;
-	std::string auxString = "";
+	string auxString = "";
+
 	do {
 		auxString += client.receiveMessage();
 		len = auxString.size();
@@ -54,8 +56,16 @@ string getXML(basicLCD & lcd, CursesClass & curses, string web)
 			getSize = false;
 			totalSize = getFileSize(auxString);
 		}
+		printPercentage(lcd, 100 * len / (float)totalSize, host);
 
-		printPercentage(lcd,100 * len /(float)totalSize, host)
+		if (curses.getSingleLoweredCharInRange(0, MAXCHAR, 5, 0, "Error: What The Fuck") == 'q') {
+			leave = true;
+			curses.clearDisplay();
+			curses << "Download Interrupted.\n";
+			auxString = "";
+		}
 
-	} while (!end(auxString));
+	} while (!leave && !end(auxString));
+
+	return auxString;
 }

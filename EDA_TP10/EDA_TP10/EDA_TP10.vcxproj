@@ -119,6 +119,8 @@
     <ClInclude Include="BasicLcd.h" />
     <ClInclude Include="CursesClass.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="marquesina.h" />
+    <ClInclude Include="textAdapter.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UserHandler.h" />
     <ClInclude Include="WrittenBox.h" />
@@ -129,6 +131,8 @@
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="hitachilcd.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="marquesina.cpp" />
+    <ClCompile Include="textAdapter.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UserHandler.cpp" />
     <ClCompile Include="WrittenBox.cpp" />

@@ -1,5 +1,6 @@
 #pragma once
-#include "BasicLcd.h"
+#include "../LCD/BasicLcd.h"
+
 #include <allegro5/allegro5.h> 
 #include <allegro5/allegro_color.h> 
 #include <allegro5/allegro_primitives.h> 

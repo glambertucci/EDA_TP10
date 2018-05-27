@@ -1,8 +1,8 @@
 #pragma once
 
 #define FTD2XX_EXPORTS
-#include "librerias/ftd2xx.h"
-#include "Timer.h"
+#include "../librerias/ftd2xx.h"
+#include "../Utils/Timer.h"
 
 //Flag to recieve or not bits info
 #define LCD_ENABLE_ON 0x01

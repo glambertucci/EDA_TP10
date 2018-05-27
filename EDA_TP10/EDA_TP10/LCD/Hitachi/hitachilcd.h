@@ -1,7 +1,7 @@
 #pragma once
 #define FTD2XX_EXPORTS
-#include "librerias\ftd2xx.h"
-#include "BasicLcd.h"
+#include "../librerias\ftd2xx.h"
+#include "../BasicLcd.h"
 #include <string>
 #include <iostream>
 using namespace std;

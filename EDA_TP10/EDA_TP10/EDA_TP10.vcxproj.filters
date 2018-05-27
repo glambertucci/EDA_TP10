@@ -37,54 +37,78 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{ee659438-e56d-4257-bc78-a287055fc50c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Network">
+      <UniqueIdentifier>{f6b080f3-fe45-47a3-8eaf-f3710cfc5ee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{c7bca899-b7bb-4827-bfd8-2ab5d16b8d95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="allegrolcd.h">
+    <ClInclude Include="LCD\Allegro\allegrolcd.h">
       <Filter>Header Files\LCD\Allegro</Filter>
     </ClInclude>
-    <ClInclude Include="BasicLcd.h">
-      <Filter>Header Files\LCD</Filter>
+    <ClInclude Include="LCD\Allegro\WrittenBox.h">
+      <Filter>Header Files\LCD\Allegro</Filter>
     </ClInclude>
-    <ClInclude Include="Display.h">
+    <ClInclude Include="LCD\Hitachi\Display.h">
       <Filter>Header Files\LCD\Hitachi</Filter>
     </ClInclude>
-    <ClInclude Include="WrittenBox.h">
-      <Filter>Header Files\LCD\Allegro</Filter>
+    <ClInclude Include="LCD\Hitachi\hitachilcd.h">
+      <Filter>Header Files\LCD\Hitachi</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="CursesClass.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="UserHandler.h">
+    <ClInclude Include="LCD\BasicLcd.h">
       <Filter>Header Files\LCD</Filter>
+    </ClInclude>
+    <ClInclude Include="LCD\UserHandler.h">
+      <Filter>Header Files\LCD</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\CursesClass.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Timer.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\client.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="allegrolcd.cpp">
-      <Filter>Source Files\LCD\Allegro</Filter>
-    </ClCompile>
-    <ClCompile Include="WrittenBox.cpp">
-      <Filter>Source Files\LCD\Allegro</Filter>
-    </ClCompile>
-    <ClCompile Include="Display.cpp">
-      <Filter>Source Files\LCD\Hitachi</Filter>
-    </ClCompile>
-    <ClCompile Include="hitachilcd.cpp">
-      <Filter>Source Files\LCD\Hitachi</Filter>
-    </ClCompile>
-    <ClCompile Include="UserHandler.cpp">
-      <Filter>Source Files\LCD</Filter>
-    </ClCompile>
-    <ClCompile Include="CursesClass.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LCD\UserHandler.cpp">
+      <Filter>Source Files\LCD</Filter>
+    </ClCompile>
+    <ClCompile Include="LCD\Allegro\allegrolcd.cpp">
+      <Filter>Source Files\LCD\Allegro</Filter>
+    </ClCompile>
+    <ClCompile Include="LCD\Allegro\WrittenBox.cpp">
+      <Filter>Source Files\LCD\Allegro</Filter>
+    </ClCompile>
+    <ClCompile Include="LCD\Hitachi\Display.cpp">
+      <Filter>Source Files\LCD\Hitachi</Filter>
+    </ClCompile>
+    <ClCompile Include="LCD\Hitachi\hitachilcd.cpp">
+      <Filter>Source Files\LCD\Hitachi</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\CursesClass.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Timer.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\client.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

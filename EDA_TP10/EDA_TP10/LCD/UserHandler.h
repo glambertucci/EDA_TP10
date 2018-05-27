@@ -1,5 +1,5 @@
 #pragma once
-#include "CursesClass.h"
+#include "../Utils/CursesClass.h"
 #include "BasicLcd.h"
 #include <fstream>
 #include <string>

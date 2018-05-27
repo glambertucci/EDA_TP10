@@ -69,10 +69,4 @@ void lcdWriteNyble(FT_HANDLE& h, byte d, bool rs_)
 	}
 }
 
-void wait(float ms)
-{
-	Timer time;
-	do {
-		time.stop();
-	} while (time.getTime() <= ms);
-}
+

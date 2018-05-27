@@ -26,3 +26,5 @@ private:
 	std::chrono:: duration<float> timePassed;
 };
 
+/*Función esperar...*/
+void wait(float ms);

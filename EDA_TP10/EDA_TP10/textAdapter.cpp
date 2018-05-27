@@ -1,5 +1,7 @@
 #include "textAdapter.h"
 #include <map>
+#include <iostream>
+using namespace std;
 
 typedef pair<char, char> spch;	//Simplifica el metodo de insert para el diccionario
 void insertChars(map<char, char> & specialChar);	//Función de redefinicion de caracteres especiales  

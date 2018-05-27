@@ -11,4 +11,4 @@ size_t getFileSize(string& str);
 
 void printPercentage(basicLCD& lcd, float percentage, string webPage);
 
-string getXML(basicLCD& lcd, CursesClass& curses, client& client);
+string getXML(basicLCD& lcd, CursesClass& curses, string web);

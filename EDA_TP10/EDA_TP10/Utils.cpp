@@ -39,6 +39,9 @@ string getXML(basicLCD & lcd, CursesClass & curses, string web)
 	string instrBlank = "\r\n";
 	client.startConnection(host.c_str());
 
+	client.send_message(instrGet.c_str(), instrGet.size());
+	client.send_message(instrHost.c_str(), instrHost.size());
+	client.send_message(instrBlank.c_str(), instrBlank.size());
 
 	bool getSize = true;
 	size_t len = 0;

@@ -36,3 +36,11 @@ float Timer::getTime()
 	}
 	return retValue;
 }
+
+void wait(float ms)
+{
+	Timer time;
+	do {
+		time.stop();
+	} while (time.getTime() <= ms);
+}

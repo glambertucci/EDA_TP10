@@ -40,6 +40,3 @@ void lcd_SendData(byte data, bool rs, FT_HANDLE& handle);
 /*La función lcdWriteNyble toma la información del byte y mediante el bool rs_ decide si lo que le llegó es dato a 
 imprimir en pantalla o una instruccion para el lcd */
 void lcdWriteNyble(FT_HANDLE & h, byte d, bool rs_);
-
-/*Función esperar...*/
-void wait(float ms);

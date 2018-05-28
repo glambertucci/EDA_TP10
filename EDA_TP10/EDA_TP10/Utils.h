@@ -9,10 +9,14 @@ using namespace std;
 
 bool end(string& str);
 
-size_t getFileSize(string& str);
+bool getFileSize(string& str, size_t& size);
 
 void printPercentage(basicLCD& lcd, float percentage, string webPage, unsigned int speed);
 
 string getXML(basicLCD& lcd, CursesClass& curses, string web);
 
 bool isLaNacion(string str);
+
+string getSite(string web);
+
+

@@ -6,9 +6,7 @@
 #include "Utils/XMLParser.h"
 
 // FALTA:
-//		- Formatear a los titulos.
 //		- Solucionar el tema de los caracteres raros
-//		- fijarse por que manda basura el clietne cuando agarras informacion (En la fecha numero 14.)
 
 int main(int argc, char ** argv)
 {
@@ -26,18 +24,12 @@ int main(int argc, char ** argv)
 		cout << ">> Please enter host as parameter.-" << endl;
 		return -1;
 	}
-	//hitachilcd lcdk;
+	//hitachilcd lcdA;
 	allegrolcd lcdA(1.3,2.3);
 	CursesClass curses;
 	string file = getXML(lcdA, curses, argv[1]);
 	basicLCD* lcd = &lcdA;
-	cursorPosition cursor = { 1, 1 };
 	lcd->lcdClear();
-	lcd->lcdSetCursorPosition(cursor);
-/*
-	cursorPosition cursor = lcd->lcdGetCursorPosition();
-	if (cursor.row == 2)
-		lcd->lcdMoveCursorUp();*/
 
 	if (file.size() != 0) {
 		file = file.substr(file.find("<rss"));
@@ -49,14 +41,21 @@ int main(int argc, char ** argv)
 			changeSpecialChar(str);
 
 		formatDate(fechas);
-
-		// Falta formatear a los titulos
+		formatTitle(titulos, getSite(argv[1]));
 
 		unsigned int speed = 45, index = 0;
 		bool leave = false;
 
 		do {
-			switch (curses.getSingleLoweredCharInRange(0, 255, 5, 0, "Nope")) {
+			lcd->lcdClearToEOL();
+
+			*lcd << titulos[index]; //showText(*lcd, titulos[index], speed);
+			lcd->lcdMoveCursorDown();
+
+			*lcd << fechas[index];
+			lcd->lcdMoveCursorUp();
+
+			switch (getch()) { 
 			case 'q':leave = true;											// Sale del programa
 				break;
 			case '+':speed += (speed + 10 >= 100 ? 0 : 10);					// Incremento la velocidad
@@ -65,19 +64,13 @@ int main(int argc, char ** argv)
 				break;
 			case 'a': index = (index == 0 ? titulos.size() : index - 1);	// Muestro el titulo anterior
 				break;
-			case 's': index = (index == titulos.size() ? 0 : index + 1);	// Muestro el titulo proximo
+			case 's': index = (index < titulos.size() ? index + 1 : 0);		// Muestro el titulo proximo
 				break;
 			case 'r':														// Muestro de vuelta el titulo
 				break;
 			}
 
-			lcd->lcdClear();
 
-			showText(*lcd, titulos[index], speed);
-			lcd->lcdMoveCursorDown();
-
-			*lcd << fechas[index];
-			lcd->lcdMoveCursorUp();
 		} while (!leave);
 	}
 

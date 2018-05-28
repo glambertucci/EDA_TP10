@@ -24,7 +24,7 @@ CursesClass::~CursesClass()
 
 char CursesClass::getSingleLoweredCharInRange(char min, char max, int posY, int posX, const char * errorMessage) {
 
-	char retValue;
+	int retValue;
 	bool leave = false;
 	bool err = false;
 	do {

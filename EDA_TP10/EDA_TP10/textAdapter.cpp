@@ -4,10 +4,9 @@
 using namespace std;
 
 typedef pair<char, char> spch;	//Simplifica el metodo de insert para el diccionario
-typedef pair<string, const char *> Month;
 void insertChars(map<char, char> & specialChar);	//Función de redefinicion de caracteres especiales  
 void setUpMonths(map <string, const char *>& month);
-
+void setUpNewspaper(map<string, string>& newspaper);
 void changeSpecialChar(string & text)
 {
 	map<char,char>specialChar;
@@ -17,7 +16,7 @@ void changeSpecialChar(string & text)
 	{
 		map<char,char>::iterator pos = specialChar.find((text[i]));	//Busco en mi diccionario
 		if (pos != specialChar.end())	//Si lo encuentro, reemplazo por el caracter defincion que puede mostrarse
-			text[i] = (specialChar.find((text[i]))->second);
+			text[i] = specialChar.at(text[i]);// (specialChar.find((text[i]))->second);
 	}
 }
 
@@ -32,14 +31,35 @@ void formatDate(vector<string>& dates)
 		string mnth = str.substr(init + 4, 3);
 		string year = str.substr(init + 10, 2);
 		string hour = str.substr(init + 13, 5);
-		string final = day + '/' + month[mnth] + '/' + year +" - " + hour;
+		string final = day + '/' + month.at(mnth) + '/' + year +" - " + hour;
 		str = final;
 	}
-
-
 }
 
-void setUpMonths(map <string, const char*> & month) {
+
+void formatTitle(vector<string>& titles, string site)
+{
+	map<string, string> newspaper;
+	setUpNewspaper(newspaper);
+	string nspp;
+	if (newspaper.count(site) == 1)
+		nspp = newspaper.at(site);
+	else
+		nspp = site;
+
+	for (string& title : titles) {
+		title = nspp + ": -" + title + " -";
+	}
+}
+
+void setUpNewspaper(map<string, string>& newspaper) {
+	newspaper["lanacion"] = "La Nacion";
+	newspaper["telam"] = "Telam";
+	newspaper["clarin"] = "Clarin";
+	newspaper["lavoz"] = "La Voz";
+}
+
+void setUpMonths(map <string, const char *>& month) {
 	month["Jan"] = "01";
 	month["Feb"] = "02";
 	month["Mar"] = "03";

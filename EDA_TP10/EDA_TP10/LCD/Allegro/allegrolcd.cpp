@@ -70,10 +70,12 @@ bool allegrolcd::lcdClear() {
 	return !(this->error);
 }
 bool allegrolcd::lcdClearToEOL() {
-	if (this->cadd <= endFirstLine)
+	if (this->cadd <= endFirstLine){
 		al_draw_filled_rectangle(100, 100, 600, 200, al_map_rgb(95, 171, 65));
-	else 
+	}
+	else{
 		al_draw_filled_rectangle(100, 100, 600, 200, al_map_rgb(95, 171, 65));
+	}
 	return this->error;
 }
 basicLCD& allegrolcd::operator<<(const char c) {

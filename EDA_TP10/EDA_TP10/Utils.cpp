@@ -1,5 +1,10 @@
 #include "Utils.h"
 
+enum class WebFormat
+{
+	FULL, MID , SHORT
+};
+
 bool end(string& str) {
 	bool retValue = false;
 	if (str.find("</rss>") != string::npos)
@@ -8,30 +13,44 @@ bool end(string& str) {
 	return retValue;
 }
 
-size_t getFileSize(string& str) {
-
+bool getFileSize(string& str, size_t& size) {
+	bool retValue;
 	size_t place = str.find("Content-Length: ");
-	string num = str.c_str() + place + strlen("Content-Length: ");
-	num = num.substr(0, num.find('\r'));
+	if (place == string::npos)
+		retValue = true;
+	else {
+		retValue = false;
+		string num = str.c_str() + place + strlen("Content-Length: ");
+		num = num.substr(0, num.find('\r'));
+		size = atoi(num.c_str());
+		string garbage = num.substr(0, num.find("<rss"));
+		size += garbage.size();
+	}
 
-	return atoi(num.c_str());
+	return retValue;
 }
 
 void printPercentage(basicLCD & lcd, float percentage, string webPage, unsigned int speed)
 {
 	cursorPosition cs = lcd.lcdGetCursorPosition();
-	if (cs.row == 2) 
-		lcd.lcdMoveCursorUp();
-	lcd << webPage;//showText(lcd, webPage, speed);
-	lcd.lcdMoveCursorDown();
-	lcd << to_string((int)percentage) << "%";
+	cursorPosition cur = { 2,1 };
+	lcd.lcdSetCursorPosition(cur);
+	lcd << to_string(((int)percentage)>100?100:((int)percentage)) << "%";
+
 }
 
 string getXML(basicLCD & lcd, CursesClass & curses, string web)
 {
 	client client;
-	string host = web.substr(0, web.find_first_of('/'));
-	string instrGet = "GET " + web.substr(web.find_first_of('/')) + " HTTP/1.1" + "\r\n";
+	string tempWeb;
+
+	if (web.find("//") == string::npos)
+		tempWeb = web;
+	else
+		tempWeb = web.substr(web.find("//") + 2);
+
+	string host = tempWeb.substr(0, tempWeb.find_first_of('/'));
+	string instrGet = "GET " + tempWeb.substr(tempWeb.find_first_of('/')) + " HTTP/1.1" + "\r\n";
 	string instrHost = "Host: " + host + "\r\n";
 	string instrBlank = "\r\n";
 	string auxString = "";
@@ -49,16 +68,16 @@ string getXML(basicLCD & lcd, CursesClass & curses, string web)
 		size_t totalSize;
 		int speed = 55;
 
-
+		lcd.lcdClear();
+		lcd << host;//showText(lcd, webPage, speed);
 		do {
 			auxString += client.receiveMessage();
 			len = auxString.size();
 			if (getSize) {
-				getSize = false;
-				totalSize = getFileSize(auxString);
-			}
-			lcd.lcdClear();
-			printPercentage(lcd, 100 * len / (float)totalSize, host,speed );
+				getSize = getFileSize(auxString,totalSize);
+			}else
+
+ 				printPercentage(lcd, 100 * len / (float)totalSize, host,speed );
 
 			switch (getch()) {
 			case ERR: break;
@@ -82,11 +101,41 @@ string getXML(basicLCD & lcd, CursesClass & curses, string web)
 	else
 		curses << "Error: Client was never initialized";
 
-
+	auxString = auxString.substr(0, auxString.find_last_of('>') + 1);
 	return auxString;
 }
 
 bool isLaNacion(string str)
 {
 	return (str.find("lanacion") != string::npos);
+}
+
+string getSite(string web)
+{
+	// Me fijo que tipo de pagina es (si tiene http, www o nada)
+	WebFormat format;
+	string retValue;
+	if (web.find("//") != string::npos)
+		format = WebFormat::FULL;
+	else {
+		string www = web.substr(0, web.find_first_of('.'));
+
+		if (www.size() <= 3)				// Estoy asumiendo que todas las paginas tienen mas de 3 letras en su nombre, que para el caso de los diarios, es valido
+			format = WebFormat::MID;
+		else
+			format = WebFormat::SHORT;
+	}
+	string temp;
+	switch (format) {
+	case WebFormat::FULL:
+	case WebFormat::MID:
+		temp = web.substr(web.find_first_of('.') + 1);
+		retValue = temp.substr(0, temp.find_first_of('.'));
+		break;
+	case WebFormat::SHORT:
+		retValue = web.substr(0, web.find_first_of('.'));
+		break;
+	}
+
+	return retValue;
 }

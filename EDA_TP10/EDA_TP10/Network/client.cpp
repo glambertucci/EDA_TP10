@@ -1,6 +1,3 @@
-
-
-
 #include "client.h"
 
 

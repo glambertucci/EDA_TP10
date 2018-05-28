@@ -80,16 +80,29 @@
     <Allegro_AddonFont>true</Allegro_AddonFont>
     <Allegro_AddonColor>true</Allegro_AddonColor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Allegro_AddonImage>true</Allegro_AddonImage>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
+    <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
+    <Allegro_AddonAudio>true</Allegro_AddonAudio>
+    <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
+    <Allegro_AddonPhysfs>true</Allegro_AddonPhysfs>
+    <Allegro_AddonDialog>true</Allegro_AddonDialog>
+    <Allegro_AddonMemfile>true</Allegro_AddonMemfile>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <Allegro_AddonColor>true</Allegro_AddonColor>
+    <Allegro_AddonVideo>true</Allegro_AddonVideo>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Guido\Documents\GitHub\EDA_TP10\EDA_TP10\EDA_TP10\librerias</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\luckd\Documents\Facultad\2018Q1\EDA\EDA_TP10\EDA_TP10\EDA_TP10\librerias;C:\Users\Guido\Documents\GitHub\EDA_TP10\EDA_TP10\EDA_TP10\librerias</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\Guido\Documents\GitHub\EDA_TP10\EDA_TP10\EDA_TP10\librerias\i386</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\luckd\Documents\Facultad\2018Q1\EDA\EDA_TP10\EDA_TP10\EDA_TP10\librerias\i386;C:\Users\Guido\Documents\GitHub\EDA_TP10\EDA_TP10\EDA_TP10\librerias\i386</AdditionalLibraryDirectories>
       <AdditionalDependencies>ftd2xx.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
@@ -102,7 +115,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\luckd\Documents\Facultad\2018Q1\EDA\EDA_TP10\EDA_TP10\EDA_TP10\librerias;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Users\luckd\Documents\Facultad\2018Q1\EDA\EDA_TP10\EDA_TP10\EDA_TP10\librerias\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ftd2xx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

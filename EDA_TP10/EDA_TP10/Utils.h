@@ -1,9 +1,10 @@
 #pragma once
+#include "Network\client.h"
 #include <string>
 #include "LCD\BasicLcd.h"
 #include "Utils\CursesClass.h"
 #include "marquesina.h"
-#include "Network\client.h"
+
 using namespace std;
 
 bool end(string& str);

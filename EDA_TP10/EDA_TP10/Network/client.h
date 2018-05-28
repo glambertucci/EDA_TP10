@@ -1,18 +1,18 @@
 #pragma once
-
+//#define WIN32_LEAN_AND_MEAN   
 #define _WIN32_WINNT 0x0501
 
-#include <iostream>
-#include <cstdio>
 #include <boost/asio.hpp>
 #include <boost/chrono.hpp>
 #include <boost/timer/timer.hpp>
 #include <boost/exception_ptr.hpp> 
+#include <iostream>
+#include <cstdio>
 #include "../Utils/Timer.h"
 #include "../Utils.h"
 #include <string>
 
-#define _WIN32_WINNT 0x0501
+
 #define ERR_STR "-1"
 #define TIMEOUT (10)
 #define NOPACKAGE "N"
@@ -38,4 +38,3 @@ private:
 	bool failure;
 
 };
-

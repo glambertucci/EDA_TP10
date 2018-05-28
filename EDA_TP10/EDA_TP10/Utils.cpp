@@ -22,7 +22,7 @@ void printPercentage(basicLCD & lcd, float percentage, string webPage, unsigned 
 	cursorPosition cs = lcd.lcdGetCursorPosition();
 	if (cs.row == 2) 
 		lcd.lcdMoveCursorUp();
-	showText(lcd, webPage, speed);
+	lcd << webPage;//showText(lcd, webPage, speed);
 	lcd.lcdMoveCursorDown();
 	lcd << to_string((int)percentage) << "%";
 }
@@ -30,8 +30,8 @@ void printPercentage(basicLCD & lcd, float percentage, string webPage, unsigned 
 string getXML(basicLCD & lcd, CursesClass & curses, string web)
 {
 	client client;
-	string host = web.substr(0, '/');
-	string instrGet = "GET " + web.substr('/') + "HTTP/1.1" + "\r\n";
+	string host = web.substr(0, web.find_first_of('/'));
+	string instrGet = "GET " + web.substr(web.find_first_of('/')) + " HTTP/1.1" + "\r\n";
 	string instrHost = "Host: " + host + "\r\n";
 	string instrBlank = "\r\n";
 	string auxString = "";
@@ -59,7 +59,8 @@ string getXML(basicLCD & lcd, CursesClass & curses, string web)
 			}
 			printPercentage(lcd, 100 * len / (float)totalSize, host,speed );
 
-			switch (curses.getSingleLoweredCharInRange(0, 255, 5, 0, "Error: What The Fuck")) {
+			switch (getch()) {
+			case ERR: break;
 			case 'q':
 				leave = true;
 				curses.clearDisplay();

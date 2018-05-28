@@ -1,11 +1,14 @@
-
+#include "Network/client.h"
 #include "LCD/Hitachi/hitachilcd.h"
 #include "LCD/Allegro/allegrolcd.h"
 #include "textAdapter.h"
 #include "Utils.h"
 #include "Utils/XMLParser.h"
-void cortar(string &data, string &ans);
 
+// FALTA:
+//		- Formatear a los titulos.
+//		- Solucionar el tema de los caracteres raros
+//		- fijarse por que manda basura el clietne cuando agarras informacion (En la fecha numero 14.)
 
 int main(int argc, char ** argv)
 {
@@ -34,13 +37,17 @@ int main(int argc, char ** argv)
 		lcd->lcdMoveCursorUp();
 
 	if (file.size() != 0) {
+		file = file.substr(file.find("<rss"));
+
 		vector <string> titulos, fechas;
 		parseXML(file, titulos, fechas, isLaNacion(argv[1]));
 
 		for (string& str : titulos)
 			changeSpecialChar(str);
 
-		// Falta formatear a los titulos y a la fecha
+		formatDate(fechas);
+
+		// Falta formatear a los titulos
 
 		unsigned int speed = 45, index = 0;
 		bool leave = false;

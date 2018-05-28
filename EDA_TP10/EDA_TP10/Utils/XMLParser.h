@@ -7,13 +7,13 @@ using namespace std;
 
 typedef struct UserData
 {
-	UserData(vector <string>& titulos, vector <string>&fechas,bool LaNacion = false) {
+	UserData(vector <string> * titulos, vector <string>*fechas,bool LaNacion = false) {
 		if (LaNacion) {
 			item = "entry";
 			date = "update";
 		}
-		this->titulos = &titulos;
-		this->fechas = &fechas;
+		this->titulos = titulos;
+		this->fechas = fechas;
 	}
 
 	bool compareItem(const char * arr) {
@@ -31,7 +31,7 @@ typedef struct UserData
 	bool Item = false;
 	bool Date = false;
 	bool Title = false;
-	vector <string>* titulos, * fechas;
+	vector <string>* titulos = nullptr, * fechas = nullptr;
 
 private:
 	string item = "item";

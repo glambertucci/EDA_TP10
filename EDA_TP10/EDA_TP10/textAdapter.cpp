@@ -4,10 +4,9 @@
 using namespace std;
 
 typedef pair<char, char> spch;	//Simplifica el metodo de insert para el diccionario
-typedef pair<string, const char *> Month;
 void insertChars(map<char, char> & specialChar);	//Función de redefinicion de caracteres especiales  
 void setUpMonths(map <string, const char *>& month);
-
+void setUpNewspaper(map<string, string>& newspaper);
 void changeSpecialChar(string & text)
 {
 	map<char,char>specialChar;
@@ -42,9 +41,18 @@ void formatDate(vector<string>& dates)
 
 void formatTitle(vector<string>& titles, string site)
 {
+	map<string, string> newspaper;
+	setUpNewspaper(newspaper);
 	for (string& title : titles) {
-		
+		title = newspaper[site] + ": -" + title + " -";
 	}
+}
+
+void setUpNewspaper(map<string, string>& newspaper) {
+	newspaper["lanacion"] = "La Nacion";
+	newspaper["telam"] = "Telam";
+	newspaper["clarin"] = "Clarin";
+	newspaper["lavoz"] = "La Voz";
 }
 
 void setUpMonths(map <string, const char *>& month) {

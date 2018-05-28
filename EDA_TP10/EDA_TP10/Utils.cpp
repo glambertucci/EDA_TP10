@@ -46,8 +46,15 @@ void printPercentage(basicLCD & lcd, float percentage, string webPage, unsigned 
 string getXML(basicLCD & lcd, CursesClass & curses, string web)
 {
 	client client;
-	string host = web.substr(0, web.find_first_of('/'));
-	string instrGet = "GET " + web.substr(web.find_first_of('/')) + " HTTP/1.1" + "\r\n";
+	string tempWeb;
+
+	if (web.find("//") == string::npos)
+		tempWeb = web;
+	else
+		tempWeb = web.substr(web.find("//") + 2);
+
+	string host = tempWeb.substr(0, tempWeb.find_first_of('/'));
+	string instrGet = "GET " + tempWeb.substr(tempWeb.find_first_of('/')) + " HTTP/1.1" + "\r\n";
 	string instrHost = "Host: " + host + "\r\n";
 	string instrBlank = "\r\n";
 	string auxString = "";

@@ -6,7 +6,6 @@
 #include "Utils/XMLParser.h"
 
 // FALTA:
-//		- Formatear a los titulos.
 //		- Solucionar el tema de los caracteres raros
 
 int main(int argc, char ** argv)
@@ -47,8 +46,6 @@ int main(int argc, char ** argv)
 		formatDate(fechas);
 		formatTitle(titulos, getSite(argv[1]));
 
-		// Falta formatear a los titulos
-
 		unsigned int speed = 45, index = 0;
 		bool leave = false;
 
@@ -61,7 +58,7 @@ int main(int argc, char ** argv)
 			*lcd << fechas[index];
 			lcd->lcdMoveCursorUp();
 
-			switch (curses.getSingleLoweredCharInRange(0, MAXCHAR, 5, 0, "Nope")) { //Ccreo que es bloqueante esto
+			switch (getch()) { 
 			case 'q':leave = true;											// Sale del programa
 				break;
 			case '+':speed += (speed + 10 >= 100 ? 0 : 10);					// Incremento la velocidad
@@ -70,7 +67,7 @@ int main(int argc, char ** argv)
 				break;
 			case 'a': index = (index == 0 ? titulos.size() : index - 1);	// Muestro el titulo anterior
 				break;
-			case 's': index = (index == titulos.size() ? 0 : index + 1);	// Muestro el titulo proximo
+			case 's': index = (index < titulos.size() ? index + 1 : 0);		// Muestro el titulo proximo
 				break;
 			case 'r':														// Muestro de vuelta el titulo
 				break;

@@ -21,7 +21,7 @@ void showText(basicLCD & lcd, string & text, unsigned int speed)
 		{
 			screen[count] = text[i];
 			lcd << screen;
-			wait(1/speed);
+			wait(speed);
 			count--;
 		}
 	}

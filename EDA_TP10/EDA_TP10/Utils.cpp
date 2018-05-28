@@ -57,6 +57,7 @@ string getXML(basicLCD & lcd, CursesClass & curses, string web)
 				getSize = false;
 				totalSize = getFileSize(auxString);
 			}
+			lcd.lcdClear();
 			printPercentage(lcd, 100 * len / (float)totalSize, host,speed );
 
 			switch (getch()) {

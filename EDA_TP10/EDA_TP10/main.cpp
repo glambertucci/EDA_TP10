@@ -31,10 +31,13 @@ int main(int argc, char ** argv)
 	CursesClass curses;
 	string file = getXML(lcdA, curses, argv[1]);
 	basicLCD* lcd = &lcdA;
-
+	cursorPosition cursor = { 1, 1 };
+	lcd->lcdClear();
+	lcd->lcdSetCursorPosition(cursor);
+/*
 	cursorPosition cursor = lcd->lcdGetCursorPosition();
 	if (cursor.row == 2)
-		lcd->lcdMoveCursorUp();
+		lcd->lcdMoveCursorUp();*/
 
 	if (file.size() != 0) {
 		file = file.substr(file.find("<rss"));

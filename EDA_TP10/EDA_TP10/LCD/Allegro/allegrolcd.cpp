@@ -72,6 +72,8 @@ bool allegrolcd::lcdClear() {
 bool allegrolcd::lcdClearToEOL() {
 	if (this->cadd <= endFirstLine)
 		al_draw_filled_rectangle(100, 100, 600, 200, al_map_rgb(95, 171, 65));
+	else 
+		al_draw_filled_rectangle(100, 100, 600, 200, al_map_rgb(95, 171, 65));
 	return this->error;
 }
 basicLCD& allegrolcd::operator<<(const char c) {
@@ -190,7 +192,7 @@ bool allegrolcd::lcdSetCursorPosition(const cursorPosition pos) {
 cursorPosition allegrolcd::lcdGetCursorPosition() {
 	cursorPosition currpos;
 	currpos.column = ((cadd > endFirstLine) ? (cadd - endFirstLine) : (cadd));
-	currpos.row = (cadd % 16) + 1;
+	currpos.row = (cadd / 16) + 1;
 	return currpos;
 }
 

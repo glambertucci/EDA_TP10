@@ -7,6 +7,7 @@ typedef pair<char, char> spch;	//Simplifica el metodo de insert para el dicciona
 typedef pair<string, const char *> Month;
 void insertChars(map<char, char> & specialChar);	//Función de redefinicion de caracteres especiales  
 void setUpMonths(map <string, const char *>& month);
+
 void changeSpecialChar(string & text)
 {
 	map<char,char>specialChar;
@@ -38,7 +39,7 @@ void formatDate(vector<string>& dates)
 
 }
 
-void setUpMonths(map <string, const char *>& month) {
+void setUpMonths(map <string, const char*> & month) {
 	month["Jan"] = "01";
 	month["Feb"] = "02";
 	month["Mar"] = "03";
@@ -56,15 +57,15 @@ void setUpMonths(map <string, const char *>& month) {
 //Caracteres especiales
 void insertChars( map<char, char> & specialChar)
 {	//Si se desea eliminar algun caracter puede comentarse una linea
-	specialChar.insert(spch('á','a'));
-	specialChar.insert(spch('é','e'));
-	specialChar.insert(spch('í','i'));
-	specialChar.insert(spch('ó','o'));
-	specialChar.insert(spch('ú','u'));
-	specialChar.insert(spch('ü','u'));
-	specialChar.insert(spch('ñ','n'));
-	specialChar.insert(spch('Ñ','N'));
-	specialChar.insert(spch('Ü', 'U'));
+	specialChar['á'] = 'a';
+	specialChar['é'] = 'e';
+	specialChar['í'] = 'i';
+	specialChar['ó'] = 'o';
+	specialChar['ú'] = 'u';
+	specialChar['ü'] = 'u';
+	specialChar['ñ'] = 'n';
+	specialChar['Ñ'] = 'N';
+	specialChar['Ü'] = 'U';
 	//Si se desea agregar algun caracter especial:
-	//specialChar.insert(spch(' ', ' '));
+	//specialChar[''] = '';
 }

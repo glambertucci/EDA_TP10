@@ -38,6 +38,13 @@ void formatDate(vector<string>& dates)
 
 }
 
+void formatTitle(vector<string>& titles, string site)
+{
+	for (string& title : titles) {
+		
+	}
+}
+
 void setUpMonths(map <string, const char *>& month) {
 	month["Jan"] = "01";
 	month["Feb"] = "02";

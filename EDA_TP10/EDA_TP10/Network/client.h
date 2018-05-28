@@ -16,7 +16,7 @@
 #define ERR_STR "-1"
 #define TIMEOUT (10)
 #define NOPACKAGE "N"
-#define PKGSIZE 10000
+#define PKGSIZE 1000
 
 using namespace std;
 class client {

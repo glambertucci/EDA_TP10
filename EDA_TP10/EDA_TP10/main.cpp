@@ -8,7 +8,6 @@
 // FALTA:
 //		- Formatear a los titulos.
 //		- Solucionar el tema de los caracteres raros
-//		- fijarse por que manda basura el clietne cuando agarras informacion (En la fecha numero 14.)
 
 int main(int argc, char ** argv)
 {
@@ -26,7 +25,7 @@ int main(int argc, char ** argv)
 		cout << ">> Please enter host as parameter.-" << endl;
 		return -1;
 	}
-	//hitachilcd lcdk;
+	//hitachilcd lcdA;
 	allegrolcd lcdA(1.3,2.3);
 	CursesClass curses;
 	string file = getXML(lcdA, curses, argv[1]);
@@ -46,6 +45,7 @@ int main(int argc, char ** argv)
 			changeSpecialChar(str);
 
 		formatDate(fechas);
+		formatTitle(titulos, getSite(argv[1]));
 
 		// Falta formatear a los titulos
 
@@ -53,7 +53,15 @@ int main(int argc, char ** argv)
 		bool leave = false;
 
 		do {
-			switch (curses.getSingleLoweredCharInRange(0, 255, 5, 0, "Nope")) {
+			lcd->lcdClearToEOL();
+
+			*lcd << titulos[index]; //showText(*lcd, titulos[index], speed);
+			lcd->lcdMoveCursorDown();
+
+			*lcd << fechas[index];
+			lcd->lcdMoveCursorUp();
+
+			switch (curses.getSingleLoweredCharInRange(0, MAXCHAR, 5, 0, "Nope")) { //Ccreo que es bloqueante esto
 			case 'q':leave = true;											// Sale del programa
 				break;
 			case '+':speed += (speed + 10 >= 100 ? 0 : 10);					// Incremento la velocidad
@@ -68,13 +76,7 @@ int main(int argc, char ** argv)
 				break;
 			}
 
-			lcd->lcdClear();
 
-			showText(*lcd, titulos[index], speed);
-			lcd->lcdMoveCursorDown();
-
-			*lcd << fechas[index];
-			lcd->lcdMoveCursorUp();
 		} while (!leave);
 	}
 

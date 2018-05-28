@@ -49,8 +49,8 @@ std::string client::receiveMessage() {
 		failure = 1;
 		return ERR_STR;
 	}
-
-	for (int i = 0; (i < strlen(buf)); i++)
+	int lenght = (strlen(buf) >= PKGSIZE ? PKGSIZE : strlen(buf));
+	for (int i = 0; (i < lenght); i++)
 		auxString += buf[i];
 
 	return auxString;

@@ -1,13 +1,13 @@
 #include "marquesina.h"
 #include <vector>
 #include <iostream>
-#include "Timer.h" 
+#include "Utils/Timer.h" 
 using namespace std;
 
 #define SCREENSIZE 16
 #define CLEANCHAR ' '
 
-void showText(basicLCD * lcd, string & text, unsigned int speed)
+void showText(basicLCD & lcd, string & text, unsigned int speed)
 {
 	string screen;
 	unsigned int count;
@@ -20,7 +20,7 @@ void showText(basicLCD * lcd, string & text, unsigned int speed)
 		while (count > 0)
 		{
 			screen[count] = text[i];
-			*lcd << screen;
+			lcd << screen;
 			wait(1/speed);
 			count--;
 		}

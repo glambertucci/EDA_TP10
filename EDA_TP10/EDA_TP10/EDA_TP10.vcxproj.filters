@@ -75,10 +75,13 @@
     <ClInclude Include="Utils.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="marquesina.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="textAdapter.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="marquesina.h">
+    <ClInclude Include="Utils\XMLParser.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
@@ -113,10 +116,13 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="marquesina.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="textAdapter.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="marquesina.cpp">
+    <ClCompile Include="Utils\XMLParser.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>

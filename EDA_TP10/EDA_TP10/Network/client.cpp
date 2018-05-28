@@ -40,29 +40,12 @@ bool client::success() {
 std::string client::receiveMessage() {
 	boost::system::error_code error;
 	char buf[PKGSIZE]; //El buffer debe ser del tamaño del paquete. 
-	bool done = true;
-	bool getSize = true;
 	size_t len = 0;
-	size_t totalSize;
 
 	std::string auxString = "";
 	do {
 		len += this->socket_forClient->read_some(boost::asio::buffer(buf), error);
-		for (int i = 0; (i < strlen(buf)); i++)
-			auxString += buf[i];
-		if (getSize) {
-			totalSize = getFileSize(auxString);
-			getSize = false;
-		}
-
-		for (int i = 0; (i < PKGSIZE); i++)
-			buf[i] = 0;
-
-		printPercentage(lcd,)
-
-		cout << 100 * len / (float)totalSize << '%'<<endl;
-
-	} while (!end(auxString));
+	} while (error.value() == WSAEWOULDBLOCK);
 
 	if (error) {
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
@@ -70,9 +53,10 @@ std::string client::receiveMessage() {
 		return ERR_STR;
 	}
 
+	for (int i = 0; (i < strlen(buf)); i++)
+		auxString += buf[i];
+
 	return auxString;
-
-
 }
 
 void client::nonblock(void)

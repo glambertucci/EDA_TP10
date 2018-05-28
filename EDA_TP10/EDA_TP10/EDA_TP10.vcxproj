@@ -139,10 +139,13 @@
     <ClInclude Include="LCD\Hitachi\Display.h" />
     <ClInclude Include="LCD\Hitachi\hitachilcd.h" />
     <ClInclude Include="LCD\UserHandler.h" />
+    <ClInclude Include="marquesina.h" />
     <ClInclude Include="Network\client.h" />
+    <ClInclude Include="textAdapter.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Utils\CursesClass.h" />
     <ClInclude Include="Utils\Timer.h" />
+    <ClInclude Include="Utils\XMLParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LCD\Allegro\allegrolcd.cpp" />
@@ -151,10 +154,13 @@
     <ClCompile Include="LCD\Hitachi\hitachilcd.cpp" />
     <ClCompile Include="LCD\UserHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="marquesina.cpp" />
     <ClCompile Include="Network\client.cpp" />
+    <ClCompile Include="textAdapter.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Utils\CursesClass.cpp" />
     <ClCompile Include="Utils\Timer.cpp" />
+    <ClCompile Include="Utils\XMLParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -172,6 +178,7 @@
     <Import Project="..\packages\boost_timer-vc141.1.67.0.0\build\boost_timer-vc141.targets" Condition="Exists('..\packages\boost_timer-vc141.1.67.0.0\build\boost_timer-vc141.targets')" />
     <Import Project="..\packages\boost_date_time-vc141.1.67.0.0\build\boost_date_time-vc141.targets" Condition="Exists('..\packages\boost_date_time-vc141.1.67.0.0\build\boost_date_time-vc141.targets')" />
     <Import Project="..\packages\boost_chrono-vc141.1.67.0.0\build\boost_chrono-vc141.targets" Condition="Exists('..\packages\boost_chrono-vc141.1.67.0.0\build\boost_chrono-vc141.targets')" />
+    <Import Project="..\packages\expat.v141.2.2.5.1\build\native\expat.v141.targets" Condition="Exists('..\packages\expat.v141.2.2.5.1\build\native\expat.v141.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -188,5 +195,6 @@
     <Error Condition="!Exists('..\packages\boost_timer-vc141.1.67.0.0\build\boost_timer-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_timer-vc141.1.67.0.0\build\boost_timer-vc141.targets'))" />
     <Error Condition="!Exists('..\packages\boost_date_time-vc141.1.67.0.0\build\boost_date_time-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_date_time-vc141.1.67.0.0\build\boost_date_time-vc141.targets'))" />
     <Error Condition="!Exists('..\packages\boost_chrono-vc141.1.67.0.0\build\boost_chrono-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_chrono-vc141.1.67.0.0\build\boost_chrono-vc141.targets'))" />
+    <Error Condition="!Exists('..\packages\expat.v141.2.2.5.1\build\native\expat.v141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\expat.v141.2.2.5.1\build\native\expat.v141.targets'))" />
   </Target>
 </Project>

@@ -16,7 +16,7 @@ void changeSpecialChar(string & text)
 	{
 		map<char,char>::iterator pos = specialChar.find((text[i]));	//Busco en mi diccionario
 		if (pos != specialChar.end())	//Si lo encuentro, reemplazo por el caracter defincion que puede mostrarse
-			text[i] = (specialChar.find((text[i]))->second);
+			text[i] = specialChar.at(text[i]);// (specialChar.find((text[i]))->second);
 	}
 }
 
@@ -31,11 +31,9 @@ void formatDate(vector<string>& dates)
 		string mnth = str.substr(init + 4, 3);
 		string year = str.substr(init + 10, 2);
 		string hour = str.substr(init + 13, 5);
-		string final = day + '/' + month[mnth] + '/' + year +" - " + hour;
+		string final = day + '/' + month.at(mnth) + '/' + year +" - " + hour;
 		str = final;
 	}
-
-
 }
 
 
@@ -43,8 +41,14 @@ void formatTitle(vector<string>& titles, string site)
 {
 	map<string, string> newspaper;
 	setUpNewspaper(newspaper);
+	string nspp;
+	if (newspaper.count(site) == 1)
+		nspp = newspaper.at(site);
+	else
+		nspp = site;
+
 	for (string& title : titles) {
-		title = newspaper[site] + ": -" + title + " -";
+		title = nspp + ": -" + title + " -";
 	}
 }
 

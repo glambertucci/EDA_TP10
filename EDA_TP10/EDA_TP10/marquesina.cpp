@@ -9,20 +9,15 @@ using namespace std;
 
 void showText(basicLCD & lcd, string & text, unsigned int speed)
 {
-	string screen;
-	unsigned int count;
-	for (int i = 0; i < SCREENSIZE; i++)
-		screen[i] = CLEANCHAR;
+	string screen = "               ";
 
-	for (int i = 0; i < text.size(); i++)
+	for (unsigned int i = 0; i < (text.size() + 1); i++)
 	{
-		count = SCREENSIZE;
-		while (count > 0)
-		{
-			screen[count] = text[i];
-			lcd << screen;
-			wait(speed);
-			count--;
-		}
+		screen[SCREENSIZE - 1] = text[i];
+		lcd << screen;
+		wait(speed);
+
+		for (int j = 0; j < (SCREENSIZE - 1); j++)
+			screen[j] = screen[j + 1];
 	}
 }

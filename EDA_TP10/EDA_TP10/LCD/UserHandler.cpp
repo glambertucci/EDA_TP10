@@ -18,12 +18,9 @@ void error(CursesClass & curses)
 void printInstructions(CursesClass & curses)
 {
 	move(0, 0);
-	printw("Hello and welcome to EDA-TP9. Do as I say and nothing will ever happen to your family, do otherwise and you'll see...\n");
-	printw("\nUse the arrows to navigate around the display\n");
-	printw("Press tab to clear the screen\n");
-	printw("Press any key to write\n");
-	printw("Press backspace to delete a character and space to  move forward a step\n");
-	printw("Press 'esc' to leave the program\n");
-	printw("Press '|' to enter the string mode\n");
-
+	printw("Hello and welcome to EDA-TP10. Do as I say and nothing will ever happen to your family, do otherwise and you'll see...\n");
+	printw("\nUse 's' and 'a' to scroll through the news\n");
+	printw("Press 'r' to repeat\n");
+	printw("Press '+'  and '-' to change the speed\n");
+	printw("Press 'q' to leave the program\n");
 }

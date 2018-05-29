@@ -72,7 +72,9 @@ int main(int argc, char ** argv)
 			case '+':speed -= (speed - 50 <= 0 ? 0 : 50);
 				// Incremento la velocidad
 				break;
-			case '-':speed += (speed + 50 >= 550 ? 0 : 50);					// Decremento la velocidad
+			case '-':
+				speed += (speed + 50 >= 750 ? 0 : 50);					// Decremento la velocidad
+
 				break;
 			case 'a': index = (index == 0 ? titulos.size() : index - 1);	// Muestro el titulo anterior
 				count = 0;

@@ -3,4 +3,4 @@
 #include "LCD/BasicLcd.h"
 using namespace std;
 
-void showText(basicLCD & lcd, string & text, unsigned int speed);
+void showText(basicLCD & lcd, string & text, unsigned int speed, unsigned int & count);

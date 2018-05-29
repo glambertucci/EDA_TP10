@@ -43,30 +43,38 @@ int main(int argc, char ** argv)
 		formatDate(fechas);
 		formatTitle(titulos, getSite(argv[1]));
 
-		unsigned int speed = 45, index = 0;
+		unsigned int speed = 505, index = 0;
 		bool leave = false;
+		unsigned int count = 0;
 
 		do {
+			cursorPosition cur2 = { 1,1 };
+			lcd->lcdSetCursorPosition(cur2);
 			lcd->lcdClearToEOL();
 
-			*lcd << titulos[index]; //showText(*lcd, titulos[index], speed);
-			lcd->lcdMoveCursorDown();
+			showText(*lcd, titulos[index], speed, count);//*lcd << titulos[index]; //
+			//lcd->lcdMoveCursorDown();
+			cursorPosition cur = { 2,1 };
+			lcd->lcdSetCursorPosition(cur);
+			
 
 			*lcd << fechas[index];
-			lcd->lcdMoveCursorUp();
+			//lcd->lcdMoveCursorUp();
 
 			switch (getch()) { 
 			case 'q':leave = true;											// Sale del programa
 				break;
-			case '+':speed += (speed + 10 >= 100 ? 0 : 10);					// Incremento la velocidad
+			case '+':speed -= (speed - 10 <= 0 ? 0 : 10);
+									// Incremento la velocidad
 				break;
-			case '-':speed -= (speed - 10 <= 0 ? 0 : 10);					// Decremento la velocidad
+			case '-':speed += (speed + 10 >= 100 ? 0 : 10);					// Decremento la velocidad
 				break;
 			case 'a': index = (index == 0 ? titulos.size() : index - 1);	// Muestro el titulo anterior
 				break;
 			case 's': index = (index < titulos.size() ? index + 1 : 0);		// Muestro el titulo proximo
 				break;
 			case 'r':														// Muestro de vuelta el titulo
+				count = 0;
 				break;
 			}
 

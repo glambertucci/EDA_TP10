@@ -94,8 +94,8 @@ basicLCD& hitachilcd::operator<<(const char * c) {
 }
 
 basicLCD& hitachilcd::operator<<(string str) {
-	if (cadd == 1)
-		lcdClear();
+	//if (cadd == 1)
+	//	lcdClear();
 	for (unsigned int iterator = 0; iterator < (str.size()); iterator++)
 	{
 		lcd_SendData(str[iterator], RS_DATA, this->device_handler);

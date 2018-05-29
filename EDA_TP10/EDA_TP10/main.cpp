@@ -2,6 +2,7 @@
 #include "LCD/Hitachi/hitachilcd.h"
 #include "LCD/Allegro/allegrolcd.h"
 #include "textAdapter.h"
+#include "LCD\UserHandler.h"
 #include "Utils.h"
 #include "Utils/XMLParser.h"
 
@@ -24,7 +25,7 @@ int main(int argc, char ** argv)
 		cout << ">> Please enter host as parameter.-" << endl;
 		return -1;
 	}
-	//hitachilcd lcdA;
+	//hitachilcd lcdA((char *)"EDA LCD 2 B");
 	allegrolcd lcdA(1.3,2.3);
 	CursesClass curses;
 	string file = getXML(lcdA, curses, argv[1]);
@@ -43,35 +44,43 @@ int main(int argc, char ** argv)
 		formatDate(fechas);
 		formatTitle(titulos, getSite(argv[1]));
 
-		unsigned int speed = 505, index = 0;
+		int speed = 505, index = 0;
 		bool leave = false;
 		unsigned int count = 0;
-
+		bool done = true;
+		printInstructions(curses);
 		do {
+
 			cursorPosition cur2 = { 1,1 };
 			lcd->lcdSetCursorPosition(cur2);
 			lcd->lcdClearToEOL();
 
-			showText(*lcd, titulos[index], speed, count);//*lcd << titulos[index]; //
+			showText(*lcd, titulos[index],  speed, count);//*lcd << titulos[index]; //
 			//lcd->lcdMoveCursorDown();
 			cursorPosition cur = { 2,1 };
 			lcd->lcdSetCursorPosition(cur);
-			
-
-			*lcd << fechas[index];
+			if (done) {
+				*lcd << fechas[index];
+				done = false;
+			}
 			//lcd->lcdMoveCursorUp();
 
-			switch (getch()) { 
-			case 'q':leave = true;											// Sale del programa
+			switch (getch()) {
+			case 'q':leave = true;
+				lcd->lcdClear();	// Sale del programa
 				break;
-			case '+':speed -= (speed - 10 <= 0 ? 0 : 10);
-									// Incremento la velocidad
+			case '+':speed -= (speed - 50 <= 0 ? 0 : 50);
+				// Incremento la velocidad
 				break;
-			case '-':speed += (speed + 10 >= 100 ? 0 : 10);					// Decremento la velocidad
+			case '-':speed += (speed + 50 >= 100 ? 0 : 50);					// Decremento la velocidad
 				break;
 			case 'a': index = (index == 0 ? titulos.size() : index - 1);	// Muestro el titulo anterior
+				count = 0;
+				done = true;
 				break;
 			case 's': index = (index < titulos.size() ? index + 1 : 0);		// Muestro el titulo proximo
+				count = 0;
+				done = true;
 				break;
 			case 'r':														// Muestro de vuelta el titulo
 				count = 0;

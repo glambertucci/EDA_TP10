@@ -7,13 +7,11 @@ using namespace std;
 #define SCREENSIZE 16
 #define CLEANCHAR ' '
 
-void showText(basicLCD & lcd, string & text, unsigned int speed, unsigned int & count)
+void showText(basicLCD & lcd, string & text,  int speed, unsigned int & count)
 {
-	string screen = "               " + text;
-	
-
-	if (count < text.size()) {
-		string temp = screen.substr(count, count + 16);
+	string screen = "               " + text+ "               ";
+	if (count < text.size()+16) {
+		string temp = screen.substr((count), 16);
 		lcd << temp;
 		count++;
 		wait(speed);

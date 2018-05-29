@@ -77,9 +77,9 @@ void setUpMonths(map <string, const char *>& month) {
 void insertChars( map<char, char> & specialChar)
 {	//Si se desea eliminar algun caracter puede comentarse una linea
 	specialChar['á'] = 'a';
-	specialChar['é'] = 'e';
+	specialChar['é'] = 'e'; //'Ã''©' es é
 	specialChar['í'] = 'i';
-	specialChar['ó'] = 'o';
+	specialChar['ó'] = 'o';// 'Ã''³' es ó
 	specialChar['ú'] = 'u';
 	specialChar['ü'] = 'u';
 	specialChar['ñ'] = 'n';
